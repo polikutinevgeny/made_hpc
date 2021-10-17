@@ -40,3 +40,6 @@ target_link_libraries(omp_parsec PRIVATE OpenMP::OpenMP_CXX)
 
 add_executable(omp_privateshared omp_privateshared.c)
 target_link_libraries(omp_privateshared PRIVATE OpenMP::OpenMP_CXX)
+
+add_executable(omp_pi omp_pi.cpp)
+target_link_libraries(omp_pi PRIVATE OpenMP::OpenMP_CXX)
