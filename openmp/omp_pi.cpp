@@ -1,5 +1,4 @@
 #include <omp.h>
-#include <stdio.h>
 #include <random>
 #include <iostream>
 #include <iomanip>
@@ -35,11 +34,13 @@ int main() {
   }
 
   auto post_time = omp_get_wtime();
+  auto pi = static_cast<double>(counter) / N * 4;
 
   std::cout << "Number of threads: " << omp_get_max_threads() << std::endl;
   std::cout << "Iterations: " << N << std::endl;
   std::cout << std::setprecision(20);
-  std::cout << "Pi: " << static_cast<double>(counter) / N * 4 << std::endl;
+  std::cout << "Pi: " << pi << std::endl;
+  std::cout << "Error: " << std::abs(pi - M_PI) << std::endl;
   std::cout << std::setprecision(4);
   std::cout << "Time spent: " << post_time - pre_time << " seconds" << std::endl;
 }
