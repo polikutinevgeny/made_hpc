@@ -4,7 +4,7 @@
 #include <iomanip>
 
 int main() {
-  std::uint64_t N = 1000000000;
+  std::uint64_t N = 10000000000;
   int N_THREADS = 16;
   std::random_device rd; // Non-determinisic random source
   std::uint64_t counter = 0;
@@ -21,20 +21,20 @@ int main() {
     {
       seed = rd(); // Seed in critical section
     }
-    std::mt19937 rng(seed);
+    std::mt19937 rng(seed); // Private rng
     std::uniform_real_distribution<double> dist(-1, 1);
 #pragma omp for reduction(+:counter)
     for (std::uint64_t i = 0; i < N; ++i) {
       auto x = dist(rng);
       auto y = dist(rng);
       if (x * x + y * y <= 1) {
-        ++counter;
+        counter += 4;
       }
     }
   }
 
   auto post_time = omp_get_wtime();
-  auto pi = static_cast<double>(counter) / N * 4;
+  auto pi = static_cast<double>(counter) / N;
 
   std::cout << "Number of threads: " << omp_get_max_threads() << std::endl;
   std::cout << "Iterations: " << N << std::endl;

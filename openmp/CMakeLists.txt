@@ -18,7 +18,6 @@ if (OPENMP_FOUND)
 endif()
 
 add_executable(omp_bugparfoc omp_bugparfoc.c)
-target_link_libraries(omp_bugparfoc PRIVATE OpenMP::OpenMP_CXX)
 
 add_executable(omp_bugreduction omp_bugreduction.c)
 target_link_libraries(omp_bugreduction PRIVATE OpenMP::OpenMP_CXX)

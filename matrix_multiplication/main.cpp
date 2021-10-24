@@ -34,10 +34,6 @@ auto measure_runtime_matrix(std::size_t size, std::size_t iterations) {
 }
 
 int main() {
-  std::vector<std::size_t> sizes = {500, 512, 1000, 1024, 2000, 2048};
-  for (const auto &it: sizes) {
-    std::cout << "Measuring size " << it << ": " << static_cast<double>(measure_runtime_matrix(it, 10)) / 1e+6
-              << " seconds" << std::endl;
-  }
+
   return 0;
 }
